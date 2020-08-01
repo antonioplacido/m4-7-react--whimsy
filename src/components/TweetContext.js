@@ -1,19 +1,27 @@
 import React from "react";
-
-import avatar from "../assets/carmen-sandiego.png";
+import moment from "moment";
+import avatar from "../assets/cheetorAvatar.jpg";
 
 export const TweetContext = React.createContext(null);
 
 export const TweetProvider = ({ children }) => {
+  const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+  const avatarSrc = avatar;
+  const isRetweetedByCurrentUser = false;
+  const isLikedByCurrentUser = false;
+  const tweetContents = "Giga-bummer! We're locked out!";
+  const displayName = "Cheetor";
+  const username = "the_real_cheetor";
   return (
     <TweetContext.Provider
       value={{
-        tweetContents: "Where in the world am I?",
-        displayName: "Carmen Sandiego ✨",
-        username: "carmen-sandiego",
-        avatarSrc: avatar,
-        isRetweetedByCurrentUser: false,
-        isLikedByCurrentUser: false,
+        tweetContents,
+        displayName,
+        username,
+        avatarSrc,
+        isRetweetedByCurrentUser,
+        isLikedByCurrentUser,
+        date,
       }}
     >
       {children}{" "}
