@@ -10,7 +10,19 @@ export const TweetProvider = ({ children }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isRetweeted, setIsRetweeted] = useState(false);
 
-  const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+  const handleToggleRetweet = () => {
+    let rtVar = !isRetweeted;
+    setIsRetweeted(rtVar);
+    setNumOfRetweets(rtVar ? numOfRetweets + 1 : numOfRetweets - 1);
+  };
+
+  const handleToggleLike = () => {
+    let likeVar = !isLiked;
+    setIsLiked(likeVar);
+    setNumOfLikes(likeVar ? numOfLikes + 1 : numOfLikes - 1);
+  };
+
+  const date = moment().format("h:mm a ∙ MMM Do, YYYY");
   const avatarSrc = avatar;
   const isRetweetedByCurrentUser = isRetweeted;
   const isLikedByCurrentUser = isLiked;
@@ -29,6 +41,12 @@ export const TweetProvider = ({ children }) => {
         date,
         numOfLikes,
         numOfRetweets,
+        setNumOfLikes,
+        setNumOfRetweets,
+        handleToggleLike,
+        handleToggleRetweet,
+        setIsLiked,
+        setIsRetweeted,
       }}
     >
       {children}{" "}
